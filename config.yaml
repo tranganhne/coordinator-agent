@@ -1,0 +1,24 @@
+# Cấu hình Coordinator Agent. Các giá trị là đề xuất, hiệu chỉnh qua thực nghiệm.
+
+# Trọng số tin cậy của từng nguồn finding (dùng khi hòa giải xung đột)
+source_reliability:
+  rule_engine: 1.0
+  graph_matching: 0.85
+  similarity: 0.7
+
+# Chênh lệch điểm tối thiểu để tự hòa giải; nhỏ hơn => conflict_resolved: false
+conflict_epsilon: 0.15
+
+# Ngưỡng độ tin cậy mặc định
+confidence_threshold: 0.7
+
+# Tỉ lệ finding có độ tin cậy thấp vượt mức này => gợi ý kiểm tra lại
+low_confidence_ratio_alert: 0.3
+
+# Đổi tên mức độ nghiêm trọng về 4 mức chuẩn
+severity_aliases:
+  minor: low
+  info: low
+  moderate: medium
+  major: high
+  blocker: critical

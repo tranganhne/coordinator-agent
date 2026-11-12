@@ -1,0 +1,35 @@
+{
+  "context": {
+    "project_id": "shop-demo",
+    "scan_id": "scan-002",
+    "commit_hash": "e4f5a6b",
+    "scan_scope": "incremental",
+    "scanned_modules": ["controllers", "services"],
+    "baseline_scan_id": null
+  },
+  "consistency_result": {
+    "drift_score": 0.12,
+    "findings": [
+      {
+        "id": "g1", "rule_id": "R-LAYER-01", "type": "forbidden_dependency", "severity": "high",
+        "source_component": "controllers", "target_component": "repository",
+        "file": "app/controllers/user_controller.py", "line": 10,
+        "evidence": "import app.repository.user_repo", "confidence": 0.92, "source": "rule_engine"
+      },
+      {
+        "id": "g2", "rule_id": "R-DRIFT-03", "type": "divergence", "severity": "medium",
+        "source_component": "services", "target_component": "ui",
+        "file": "app/services/payment.py", "line": 44,
+        "evidence": "Độ tương đồng cấu trúc thấp", "confidence": 0.62, "source": "similarity"
+      },
+      {
+        "id": "g3", "rule_id": "R-LAYER-04", "type": "forbidden_dependency", "severity": "major",
+        "source_component": "services", "target_component": "external_api",
+        "file": "app/services/cache.py", "line": 5,
+        "evidence": "Gọi thẳng API bên ngoài, bỏ qua gateway", "confidence": 0.88, "source": "rule_engine"
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}

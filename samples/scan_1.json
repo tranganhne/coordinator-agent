@@ -1,0 +1,59 @@
+{
+  "context": {
+    "project_id": "shop-demo",
+    "scan_id": "scan-001",
+    "commit_hash": "a1b2c3d",
+    "scan_scope": "full",
+    "scanned_modules": [],
+    "baseline_scan_id": null
+  },
+  "consistency_result": {
+    "drift_score": 0.18,
+    "findings": [
+      {
+        "id": "f1", "rule_id": "R-LAYER-01", "type": "forbidden_dependency", "severity": "high",
+        "source_component": "controllers", "target_component": "repository",
+        "file": "app/controllers/order_controller.py", "line": 12,
+        "evidence": "import app.repository.order_repo", "confidence": 0.95, "source": "rule_engine"
+      },
+      {
+        "id": "f2", "rule_id": "R-LAYER-01", "type": "forbidden_dependency", "severity": "medium",
+        "source_component": "controllers", "target_component": "repository",
+        "file": "./app/controllers/order_controller.py", "line": 12,
+        "evidence": "Cạnh controllers->repository không có trong đồ thị thiết kế", "confidence": 0.80, "source": "graph_matching"
+      },
+      {
+        "id": "f3", "rule_id": "R-LAYER-02", "type": "forbidden_dependency", "severity": "blocker",
+        "source_component": "ui", "target_component": "database",
+        "file": "app/ui/report_view.py", "line": 30,
+        "evidence": "import sqlite3 trong tầng UI", "confidence": 0.90, "source": "rule_engine"
+      },
+      {
+        "id": "f4", "rule_id": "R-DRIFT-03", "type": "divergence", "severity": "medium",
+        "source_component": "services", "target_component": "ui",
+        "file": "app/services/payment.py", "line": 41,
+        "evidence": "Độ tương đồng cấu trúc thấp", "confidence": 0.60, "source": "similarity"
+      },
+      {
+        "id": "f5", "rule_id": "R-DRIFT-03", "type": "absence", "severity": "medium",
+        "source_component": "services", "target_component": "ui",
+        "file": "app/services/payment.py", "line": 41,
+        "evidence": "Thiết kế có cạnh services->ui nhưng code không có", "confidence": 0.55, "source": "graph_matching"
+      },
+      {
+        "id": "f6", "rule_id": "R-LAYER-01", "type": "forbidden_dependency", "severity": "high",
+        "source_component": "controllers", "target_component": "repository",
+        "file": "app/controllers/user_controller.py", "line": 8,
+        "evidence": "import app.repository.user_repo", "confidence": 0.90, "source": "rule_engine"
+      },
+      {
+        "id": "f7-loi", "rule_id": "R-LAYER-01", "type": "forbidden_dependency", "severity": "high",
+        "source_component": "controllers", "target_component": "repository",
+        "file": "app/controllers/cart.py", "line": 3,
+        "evidence": "confidence sai miền giá trị", "confidence": 1.5, "source": "rule_engine"
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}
