@@ -1,0 +1,31 @@
+# Bộ luật kiến trúc VÍ DỤ cho BigBlueButton (do nhóm tự đặt để thử nghiệm,
+# KHÔNG có trong benchmark ArDoCo). Sửa / bổ sung theo tài liệu kiến trúc thật.
+rules:
+  - id: R-BBB-01
+    description: "HTML5 Client không được truy cập Redis trực tiếp, phải đi qua HTML5 Server"
+    forbid:
+      from: "HTML5 Client"
+      to: ["Redis PubSub", "Redis DB"]
+    severity: critical
+
+  - id: R-BBB-02
+    description: "Chỉ FSESL được giao tiếp với FreeSWITCH"
+    forbid:
+      from: "*"
+      except: ["FSESL"]
+      to: ["FreeSWITCH"]
+    severity: high
+
+  - id: R-BBB-03
+    description: "HTML5 Client không được import code phía HTML5 Server"
+    forbid:
+      from: "HTML5 Client"
+      to: ["HTML5 Server"]
+    severity: high
+
+  - id: R-BBB-04
+    description: "HTML5 Server không được import code giao diện của HTML5 Client"
+    forbid:
+      from: "HTML5 Server"
+      to: ["HTML5 Client"]
+    severity: high
