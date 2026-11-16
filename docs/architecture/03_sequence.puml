@@ -1,0 +1,32 @@
+@startuml 03_sequence
+title Góc nhìn 3 - Một lần quét (UML Sequence)
+autonumber
+participant "LangGraph\nOrchestration" as O
+participant "Consistency\nChecking" as C
+participant "Coordinator" as K
+database "KB unified" as DB
+participant "Reporting" as R
+
+O -> C : chạy kiểm tra
+C --> O : ConsistencyResult
+O -> K : run(context, consistency_result)
+K -> DB : đọc lần quét trước + chiến lược cũ
+DB --> K : HistorySnapshot
+K -> K : chuẩn hóa, loại finding sai schema
+K -> K : gom theo fingerprint, hòa giải xung đột
+K -> K : so với lần trước: New / Persistent / Resolved
+K -> K : đề xuất chiến lược quét lần sau
+par Nhánh ghi KB
+  K -> K : kiểm tra toàn vẹn
+  alt hợp lệ
+    K -> DB : ghi unified + delta + chiến lược (1 transaction)
+  else không hợp lệ
+    K -> K : không ghi, lưu lỗi
+  end
+else Nhánh báo cáo
+  K -> K : dựng ReportingPayload
+end
+K --> O : CoordinatorResult (kb_persisted, errors)
+O -> R : ReportingPayload
+note over O : Orchestration (không phải Coordinator)\nquyết định retry nếu kb_persisted = false
+@enduml

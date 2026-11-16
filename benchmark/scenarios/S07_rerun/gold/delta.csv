@@ -1,0 +1,7 @@
+run,key,expected_status,expected_not_rescanned
+s1,R1|ui|db|a.py,new,False
+s1,R1|ui|db|b.py,new,False
+s2,R1|ui|db|a.py,persistent,False
+s2,R1|ui|db|b.py,resolved,False
+s2_retry,R1|ui|db|a.py,persistent,False
+s2_retry,R1|ui|db|b.py,resolved,False

@@ -1,0 +1,37 @@
+@startuml 02_component
+!include <C4/C4_Component>
+title Góc nhìn 2 - Bên trong Coordinator (C4 Component)
+
+Container(cc, "Consistency Checking", "Agent")
+Container(rep, "Reporting", "Agent")
+ContainerDb(uni, "KB - tầng unified", "SQLite")
+
+Container_Boundary(coord, "Coordinator Agent") {
+  Component(graph, "Subgraph điều phối", "agent.py", "8 node, 2 nhánh ra song song")
+  Component(norm, "Chuẩn hóa", "aggregation/normalizer.py", "NV 3")
+  Component(agg, "Tổng hợp", "aggregation/aggregator.py", "NV 1 - gom theo fingerprint")
+  Component(res, "Hòa giải xung đột", "aggregation/conflict_resolver.py", "NV 2 - reliability x confidence")
+  Component(delta, "Phân tích delta", "delta/delta_analyzer.py", "NV 8 - New/Persistent/Resolved")
+  Component(plan, "Đề xuất chiến lược", "strategy_planner.py", "Pha Plan (MAPE-K)")
+  Component(tmp, "Kết quả trung gian", "intermediate_store.py", "NV 5")
+  Component(read, "Đọc lịch sử", "knowledge/kb_reader.py", "NV 7")
+  Component(chk, "Kiểm tra toàn vẹn", "knowledge/integrity.py", "NV 6")
+  Component(write, "Ghi KB (Single Writer)", "knowledge/kb_writer.py", "NV 9 - transaction, upsert")
+  Component(pay, "Đóng gói", "payload_builder.py", "NV 4, 10")
+}
+
+Rel(cc, graph, "ConsistencyResult")
+Rel(graph, read, "1")
+Rel(read, uni, "SELECT")
+Rel(graph, norm, "2")
+Rel(graph, agg, "3")
+Rel(graph, res, "4")
+Rel(graph, delta, "5")
+Rel(graph, plan, "6")
+Rel(graph, chk, "7a")
+Rel(chk, write, "hợp lệ")
+Rel(write, uni, "INSERT/UPSERT")
+Rel(graph, pay, "7b (song song)")
+Rel(pay, rep, "ReportingPayload")
+Rel_L(graph, tmp, "lưu tạm")
+@enduml

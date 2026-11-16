@@ -91,10 +91,10 @@ Xem `samples/scan_1.json`. Hai phần bắt buộc:
 - `context`: gồm `project_id`, `scan_id`, `scan_scope` (`full` | `incremental`) và `scanned_modules`.
 - `consistency_result.findings[]`: mỗi finding cần có `rule_id`, `type`, `severity`, `source_component`, `target_component`, `file`, `confidence` (0–1) và `source`.
 
-## Ví dụ trên dữ liệu thật và mô hình kiến trúc
+## Benchmark và mô hình kiến trúc
 
-- `examples/bigbluebutton/`: chạy Coordinator trên mô hình kiến trúc và mã nguồn **BigBlueButton** (benchmark ArDoCo), gồm 3 lần quét. Xem README trong thư mục đó.
-- `docs/architecture/`: **mô hình kiến trúc của chính Coordinator** (JSON theo định dạng `ArchitectureGraph`, sơ đồ C4-PlantUML, Mermaid và ảnh PNG).
+- `benchmark/`: **bộ dữ liệu kiểm thử riêng của Coordinator**, gồm 8 kịch bản có đáp án và script chấm điểm (Precision / Recall / F1). Chạy: `python benchmark/evaluate.py`.
+- `docs/architecture/`: **mô hình kiến trúc phần mềm của Coordinator** theo 4+1 góc nhìn (C4, UML Sequence / Class / State / Deployment, ERD) và 4 quyết định kiến trúc (ADR).
 
 ## Dùng trong code (tích hợp với Orchestration)
 

@@ -1,0 +1,22 @@
+{
+  "id": "S07_rerun",
+  "title": "Chạy lại cùng một lần quét",
+  "description": "Orchestration retry lần quét s2: kết quả phải giống hệt, KB không sinh bản ghi trùng.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    },
+    {
+      "run": "s2",
+      "file": "scans/s2.json",
+      "scan_id": "s2"
+    },
+    {
+      "run": "s2_retry",
+      "file": "scans/s2_retry.json",
+      "scan_id": "s2"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "S06_integrity",
+  "title": "Toàn vẹn dữ liệu",
+  "description": "Lần 1 chỉ định baseline không tồn tại: không được ghi KB nhưng vẫn phải gửi báo cáo. Lần 2 vì thế vẫn là lần đầu tiên (mọi lỗi New).",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    },
+    {
+      "run": "s2",
+      "file": "scans/s2.json",
+      "scan_id": "s2"
+    }
+  ]
+}

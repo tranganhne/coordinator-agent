@@ -1,0 +1,12 @@
+{
+  "id": "S05_normalization",
+  "title": "Chuẩn hóa dữ liệu",
+  "description": "Severity viết hoa/bí danh (MAJOR, blocker) và đường dẫn kiểu Windows (./src\\ui\\a.py) phải được chuẩn hóa để hai báo cáo của cùng một lỗi được gộp lại.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    }
+  ]
+}

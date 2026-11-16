@@ -1,0 +1,198 @@
+{
+  "delta": {
+    "new": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 135
+    },
+    "persistent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 340
+    },
+    "resolved": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 41
+    }
+  },
+  "conflicts": {
+    "resolution": 254,
+    "value": 254,
+    "flag": 254,
+    "total": 254
+  },
+  "scenarios": [
+    {
+      "id": "S01_first_scan",
+      "title": "Lần quét đầu tiên",
+      "runs": 1,
+      "nr": [
+        3,
+        3
+      ],
+      "conf": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum": [
+        1,
+        1
+      ],
+      "time_ms": 25.524600059725344,
+      "errors": []
+    },
+    {
+      "id": "S02_lifecycle",
+      "title": "Vòng đời lỗi qua 3 lần quét",
+      "runs": 3,
+      "nr": [
+        11,
+        11
+      ],
+      "conf": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum": [
+        3,
+        3
+      ],
+      "time_ms": 13.158466666936874,
+      "errors": []
+    },
+    {
+      "id": "S03_incremental",
+      "title": "Quét incremental",
+      "runs": 3,
+      "nr": [
+        8,
+        8
+      ],
+      "conf": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum": [
+        3,
+        3
+      ],
+      "time_ms": 13.441900024190545,
+      "errors": []
+    },
+    {
+      "id": "S04_conflicts",
+      "title": "Hòa giải xung đột",
+      "runs": 1,
+      "nr": [
+        4,
+        4
+      ],
+      "conf": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "sum": [
+        1,
+        1
+      ],
+      "time_ms": 19.864300033077598,
+      "errors": []
+    },
+    {
+      "id": "S05_normalization",
+      "title": "Chuẩn hóa dữ liệu",
+      "runs": 1,
+      "nr": [
+        2,
+        2
+      ],
+      "conf": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "sum": [
+        1,
+        1
+      ],
+      "time_ms": 20.211099996231496,
+      "errors": []
+    },
+    {
+      "id": "S06_integrity",
+      "title": "Toàn vẹn dữ liệu",
+      "runs": 2,
+      "nr": [
+        3,
+        3
+      ],
+      "conf": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum": [
+        2,
+        2
+      ],
+      "time_ms": 12.100049993023276,
+      "errors": []
+    },
+    {
+      "id": "S07_rerun",
+      "title": "Chạy lại cùng một lần quét",
+      "runs": 3,
+      "nr": [
+        6,
+        6
+      ],
+      "conf": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum": [
+        3,
+        3
+      ],
+      "time_ms": 14.561333344317973,
+      "errors": []
+    },
+    {
+      "id": "S08_synthetic_large",
+      "title": "Dự án tổng hợp 8 module, 6 lần quét",
+      "runs": 6,
+      "nr": [
+        479,
+        479
+      ],
+      "conf": [
+        248,
+        248,
+        248,
+        248
+      ],
+      "sum": [
+        6,
+        6
+      ],
+      "time_ms": 17.131616671880085,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "context": {
+    "project_id": "p3",
+    "scan_id": "s3",
+    "commit_hash": "c-s3",
+    "scan_scope": "full",
+    "scanned_modules": [],
+    "baseline_scan_id": null
+  },
+  "consistency_result": {
+    "drift_score": 0.0,
+    "findings": [
+      {
+        "id": "y",
+        "rule_id": "R1",
+        "type": "forbidden_dependency",
+        "severity": "high",
+        "source_component": "api",
+        "target_component": "db",
+        "file": "api/y.py",
+        "line": 1,
+        "evidence": "api->db",
+        "confidence": 0.9,
+        "source": "rule_engine"
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}

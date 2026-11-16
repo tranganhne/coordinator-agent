@@ -1,0 +1,70 @@
+@startuml 04_class
+title Góc nhìn 4 - Mô hình dữ liệu (UML Class, schema.py)
+hide empty methods
+skinparam classAttributeIconSize 0
+
+class CoordinatorInput
+class ScanContext {
+  project_id : str
+  scan_id : str
+  scan_scope : full | incremental
+  scanned_modules : list[str]
+  baseline_scan_id : str?
+}
+class ConsistencyResult {
+  drift_score : float
+}
+class RawFinding {
+  rule_id : str
+  type : FindingType
+  severity : str
+  source_component : str
+  target_component : str
+  file : str
+  confidence : 0..1
+  source : rule_engine | graph_matching | similarity
+}
+class UnifiedFinding {
+  fingerprint : str
+  severity : Severity
+  confidence : float
+  delta_status : new | persistent | resolved
+  not_rescanned : bool
+  conflict_resolved : bool
+  provenance : list[str]
+}
+class Location
+class Alternative
+class ConflictRecord {
+  field : severity | type
+  resolution : merged | priority_by_reliability | unresolved
+}
+class DeltaResult {
+  new : list[fp]
+  persistent : list[fp]
+  resolved : list[fp]
+}
+class ScanStrategy {
+  scope
+  target_modules
+  confidence_threshold
+  notes
+}
+class ReportingPayload {
+  kb_persisted : bool
+}
+class UnifiedRecord
+
+CoordinatorInput *-- ScanContext
+CoordinatorInput *-- ConsistencyResult
+ConsistencyResult "1" *-- "0..*" RawFinding
+RawFinding "1..*" ..> "1" UnifiedFinding : gộp & hòa giải
+UnifiedFinding *-- Location
+UnifiedFinding "1" *-- "0..*" Alternative
+ReportingPayload "1" *-- "0..*" UnifiedFinding
+ReportingPayload "1" *-- "0..*" ConflictRecord
+ReportingPayload *-- ScanStrategy
+UnifiedRecord "1" *-- "0..*" UnifiedFinding : active
+UnifiedRecord *-- DeltaResult
+UnifiedRecord *-- ScanStrategy
+@enduml

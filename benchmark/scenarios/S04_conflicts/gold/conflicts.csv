@@ -1,0 +1,5 @@
+run,key,field,expected_resolution,expected_value,expected_conflict_resolved
+s1,R1|ui|db|k1.py,severity,priority_by_reliability,high,True
+s1,R9|svc|ui|k2.py,type,unresolved,absence,False
+s1,R2|api|db|k3.py,severity,merged,high,True
+s1,R3|api|ext|k4.py,severity,unresolved,critical,False

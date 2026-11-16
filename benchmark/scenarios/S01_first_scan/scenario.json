@@ -1,0 +1,12 @@
+{
+  "id": "S01_first_scan",
+  "title": "Lần quét đầu tiên",
+  "description": "Không có lịch sử: mọi lỗi là New. Hai finding sai schema (confidence 1.2, severity lạ) bị loại.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    }
+  ]
+}

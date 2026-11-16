@@ -1,0 +1,23 @@
+@startuml 07_deployment
+title Góc nhìn 7 - Triển khai (UML Deployment)
+node "Máy phát triển / máy chủ nhóm" {
+  node "Tiến trình Python 3.13 (.venv)" {
+    artifact "LangGraph Orchestration" as O
+    artifact "coordinator_agent" as K
+    artifact "các agent khác" as A
+  }
+  database "data/kb.sqlite\n(tầng unified)" as DB
+  file "config.yaml\n.env" as CFG
+  folder "outputs/" as OUT
+}
+node "GitHub" {
+  artifact "repo coordinator-agent" as GH
+}
+O --> K : gọi trong cùng tiến trình
+A ..> O
+K --> DB : sqlite3
+K ..> CFG : đọc cấu hình
+K --> OUT : main.py ghi JSON
+K ..> GH : git push (thủ công)
+note bottom of DB : Giai đoạn sau có thể chuyển sang PostgreSQL\n và đóng gói Docker (theo đề cương)
+@enduml

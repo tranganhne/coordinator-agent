@@ -1,0 +1,4 @@
+run,new,persistent,resolved,kb_persisted,dropped
+s1,3,0,0,True,0
+s2,0,2,1,True,0
+s3,0,1,1,True,0

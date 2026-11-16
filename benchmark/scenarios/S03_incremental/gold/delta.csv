@@ -1,0 +1,9 @@
+run,key,expected_status,expected_not_rescanned
+s1,R1|ui|db|ui/x.py,new,False
+s1,R1|api|db|api/y.py,new,False
+s1,R2|api|ext|api/z.py,new,False
+s2,R1|ui|db|ui/x.py,persistent,True
+s2,R1|api|db|api/y.py,persistent,False
+s2,R2|api|ext|api/z.py,resolved,False
+s3,R1|ui|db|ui/x.py,resolved,False
+s3,R1|api|db|api/y.py,persistent,False

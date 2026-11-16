@@ -1,0 +1,56 @@
+{
+  "context": {
+    "project_id": "p2",
+    "scan_id": "s1",
+    "commit_hash": "c-s1",
+    "scan_scope": "full",
+    "scanned_modules": [],
+    "baseline_scan_id": null
+  },
+  "consistency_result": {
+    "drift_score": 0.0,
+    "findings": [
+      {
+        "id": "a",
+        "rule_id": "R1",
+        "type": "forbidden_dependency",
+        "severity": "high",
+        "source_component": "ui",
+        "target_component": "db",
+        "file": "a.py",
+        "line": 1,
+        "evidence": "ui->db",
+        "confidence": 0.9,
+        "source": "rule_engine"
+      },
+      {
+        "id": "b",
+        "rule_id": "R1",
+        "type": "forbidden_dependency",
+        "severity": "high",
+        "source_component": "ui",
+        "target_component": "db",
+        "file": "b.py",
+        "line": 1,
+        "evidence": "ui->db",
+        "confidence": 0.9,
+        "source": "rule_engine"
+      },
+      {
+        "id": "c",
+        "rule_id": "R2",
+        "type": "forbidden_dependency",
+        "severity": "high",
+        "source_component": "api",
+        "target_component": "ext",
+        "file": "c.py",
+        "line": 1,
+        "evidence": "api->ext",
+        "confidence": 0.9,
+        "source": "rule_engine"
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}

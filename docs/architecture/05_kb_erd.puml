@@ -1,0 +1,38 @@
+@startuml 05_kb_erd
+title Góc nhìn 5 - Kho tri thức tầng unified (ERD)
+hide circle
+skinparam linetype ortho
+entity scan_index {
+  * project_id : TEXT <<PK>>
+  * scan_id : TEXT <<PK>>
+  --
+  commit_hash : TEXT
+  created_at : TEXT
+  status : TEXT
+  seq : INTEGER
+}
+entity unified_findings {
+  * scan_id : TEXT <<PK, FK>>
+  * fingerprint : TEXT <<PK>>
+  --
+  project_id : TEXT
+  data_json : TEXT
+}
+entity delta_results {
+  * scan_id : TEXT <<PK, FK>>
+  --
+  project_id : TEXT
+  baseline_scan_id : TEXT
+  data_json : TEXT
+}
+entity scan_strategies {
+  * project_id : TEXT <<PK>>
+  --
+  scan_id : TEXT
+  data_json : TEXT
+}
+scan_index ||--o{ unified_findings
+scan_index ||--|| delta_results
+scan_index ||--o| scan_strategies : bản mới nhất
+delta_results }o--o| scan_index : baseline
+@enduml

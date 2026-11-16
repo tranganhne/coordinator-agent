@@ -1,0 +1,15 @@
+@startuml 06_finding_state
+title Góc nhìn 6 - Vòng đời một lỗi qua các lần quét (UML State)
+[*] --> New : xuất hiện lần đầu
+New --> Persistent : lần sau vẫn còn
+Persistent --> Persistent : vẫn còn
+New --> Resolved : lần sau không còn\n(và module được quét lại)
+Persistent --> Resolved : không còn\n(và module được quét lại)
+Persistent --> NotRescanned : quét incremental,\nmodule không được quét
+New --> NotRescanned : quét incremental,\nmodule không được quét
+NotRescanned --> Persistent : quét lại, vẫn còn
+NotRescanned --> Resolved : quét lại, không còn
+Resolved --> New : xuất hiện lại
+state NotRescanned : Persistent + cờ not_rescanned
+Resolved --> [*]
+@enduml

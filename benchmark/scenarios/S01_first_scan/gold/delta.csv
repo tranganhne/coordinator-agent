@@ -1,0 +1,4 @@
+run,key,expected_status,expected_not_rescanned
+s1,R1|ui|db|src/ui/a.py,new,False
+s1,R1|ui|db|src/ui/b.py,new,False
+s1,R2|api|ext|src/api/c.py,new,False

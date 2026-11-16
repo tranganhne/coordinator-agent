@@ -1,0 +1,22 @@
+{
+  "id": "S03_incremental",
+  "title": "Quét incremental",
+  "description": "Lần 2 chỉ quét module api: lỗi ở ui không được kết luận là đã sửa (not_rescanned). Lần 3 quét toàn bộ mới xác nhận X đã sửa.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    },
+    {
+      "run": "s2",
+      "file": "scans/s2.json",
+      "scan_id": "s2"
+    },
+    {
+      "run": "s3",
+      "file": "scans/s3.json",
+      "scan_id": "s3"
+    }
+  ]
+}

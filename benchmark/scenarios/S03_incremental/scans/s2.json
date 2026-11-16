@@ -1,0 +1,32 @@
+{
+  "context": {
+    "project_id": "p3",
+    "scan_id": "s2",
+    "commit_hash": "c-s2",
+    "scan_scope": "incremental",
+    "scanned_modules": [
+      "api"
+    ],
+    "baseline_scan_id": null
+  },
+  "consistency_result": {
+    "drift_score": 0.0,
+    "findings": [
+      {
+        "id": "y",
+        "rule_id": "R1",
+        "type": "forbidden_dependency",
+        "severity": "high",
+        "source_component": "api",
+        "target_component": "db",
+        "file": "api/y.py",
+        "line": 1,
+        "evidence": "api->db",
+        "confidence": 0.9,
+        "source": "rule_engine"
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}

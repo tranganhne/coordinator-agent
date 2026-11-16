@@ -1,0 +1,26 @@
+@startuml 01_container
+!include <C4/C4_Container>
+title Góc nhìn 1 - Coordinator trong hệ thống ACC (C4 Container)
+
+System_Boundary(acc, "Hệ thống kiểm tra nhất quán kiến trúc (Multi-Agent)") {
+  Container(orch, "LangGraph Orchestration", "Python, LangGraph", "Thứ tự chạy, rẽ nhánh, quản lý State, retry")
+  Container(ae, "Architecture Extraction", "Agent", "Đồ thị thiết kế")
+  Container(ca, "Code Analysis", "Agent", "Đồ thị thực tế")
+  Container(cc, "Consistency Checking", "Agent", "Findings: vi phạm + độ tin cậy")
+  Container(coord, "Coordinator Agent", "Python, Pydantic, LangGraph", "Tổng hợp, hòa giải xung đột, delta, Single Writer")
+  Container(rep, "Reporting", "Agent", "Báo cáo, dashboard")
+  ContainerDb(raw, "KB - tầng raw/audit", "DB", "Mỗi agent ghi phần riêng")
+  ContainerDb(uni, "KB - tầng unified", "SQLite", "Chỉ Coordinator ghi")
+}
+
+Rel(orch, coord, "Gọi run()", "State")
+Rel(ae, cc, "Đồ thị thiết kế")
+Rel(ca, cc, "Đồ thị thực tế")
+Rel(cc, coord, "ConsistencyResult", "State")
+Rel(cc, raw, "Ghi raw metadata")
+Rel(coord, uni, "Đọc lịch sử / ghi unified, delta, chiến lược", "SQL")
+Rel(coord, rep, "ReportingPayload", "State")
+Rel(uni, ae, "Chiến lược quét")
+Rel(uni, ca, "Chiến lược quét")
+SHOW_LEGEND()
+@enduml

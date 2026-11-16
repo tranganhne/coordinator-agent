@@ -1,0 +1,12 @@
+{
+  "id": "S04_conflicts",
+  "title": "Hòa giải xung đột",
+  "description": "4 nhóm finding nhiều nguồn: ưu tiên theo độ tin cậy, không hòa giải được (2 nhóm), và gộp.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    }
+  ]
+}

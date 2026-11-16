@@ -1,28 +1,60 @@
-# Mô hình kiến trúc của Coordinator Agent
+# Mô hình kiến trúc phần mềm của Coordinator Agent
 
-| File | Nội dung |
+Mô hình trình bày theo **4+1 góc nhìn** (Kruchten): logic, tiến trình, phát triển, vật lý và kịch bản. Sơ đồ viết bằng **PlantUML** (UML và C4). Các quyết định thiết kế quan trọng ghi lại dưới dạng **ADR** (Architecture Decision Record).
+
+| Góc nhìn 4+1 | Sơ đồ | File nguồn |
+| --- | --- | --- |
+| Bối cảnh hệ thống | Coordinator trong hệ thống ACC (C4 Container) | `01_container.puml` |
+| Phát triển | Các thành phần bên trong Coordinator (C4 Component) | `02_component.puml` |
+| Tiến trình | Một lần quét, có 2 nhánh song song (UML Sequence) | `03_sequence.puml` |
+| Logic | Mô hình dữ liệu `schema.py` (UML Class) | `04_class.puml` |
+| Logic | Kho tri thức tầng unified (ERD) | `05_kb_erd.puml` |
+| Kịch bản | Vòng đời một lỗi qua các lần quét (UML State) | `06_finding_state.puml` |
+| Vật lý | Triển khai (UML Deployment) | `07_deployment.puml` |
+
+Ảnh đã xuất nằm trong `img/`.
+
+## 1. Coordinator trong hệ thống
+
+![](img/01_container.png)
+
+## 2. Bên trong Coordinator
+
+![](img/02_component.png)
+
+Số trên mũi tên là thứ tự chạy; "NV" là nhiệm vụ trong 10 nhiệm vụ của Coordinator.
+
+## 3. Một lần quét
+
+![](img/03_sequence.png)
+
+## 4. Mô hình dữ liệu
+
+![](img/04_class.png)
+
+## 5. Kho tri thức tầng unified
+
+![](img/05_kb_erd.png)
+
+## 6. Vòng đời một lỗi
+
+![](img/06_finding_state.png)
+
+## 7. Triển khai
+
+![](img/07_deployment.png)
+
+## Quyết định kiến trúc (ADR)
+
+| Mã | Quyết định |
 | --- | --- |
-| `coordinator_architecture.json` | **Mô hình gốc**, theo đúng định dạng `ArchitectureGraph` của Architecture Extraction Agent (`nodes`, `edges`, `c4_level`, `relationship_type`...). 7 thành phần bên ngoài (cấp container) + 13 thành phần bên trong Coordinator (cấp component), 25 quan hệ. |
-| `coordinator_component.puml` | Sơ đồ C4-PlantUML sinh từ JSON. Cùng cú pháp `Container(...)`, `Component(...)`, `Rel(...)` mà parser PlantUML của Architecture Extraction đọc được. |
-| `coordinator_component.mmd` | Sơ đồ Mermaid sinh từ JSON, xem trực tiếp trên GitHub. |
-| `coordinator_component.png` | Ảnh xuất từ Mermaid. |
-| `build_diagrams.py` | Sinh lại `.puml` và `.mmd` sau khi sửa JSON. |
+| [ADR-001](adr/ADR-001-single-writer.md) | Coordinator là agent duy nhất ghi tầng unified |
+| [ADR-002](adr/ADR-002-deterministic-conflict-resolution.md) | Hòa giải xung đột bằng công thức tất định, không dùng LLM |
+| [ADR-003](adr/ADR-003-fingerprint.md) | Fingerprint không chứa số dòng |
+| [ADR-004](adr/ADR-004-not-rescanned.md) | Quét incremental không được kết luận lỗi đã sửa |
 
-Mỗi thành phần bên trong ghi rõ file code (`module`) và nhiệm vụ số mấy trong 10 nhiệm vụ (`task`).
+Mỗi ADR đều được kiểm chứng bằng ít nhất một kịch bản trong `benchmark/`.
 
-## Sửa mô hình
+## Sửa sơ đồ
 
-1. Sửa `coordinator_architecture.json`.
-2. Chạy `python docs/architecture/build_diagrams.py`.
-3. (Tùy chọn) Xuất ảnh: `mmdc -i docs/architecture/coordinator_component.mmd -o docs/architecture/coordinator_component.png`.
-
-Xem file `.puml`: dán vào https://www.plantuml.com/plantuml hoặc cài extension PlantUML trong VS Code (cần mạng để tải thư viện C4).
-
-```mermaid
-flowchart LR
-  consistency[Consistency Checking] --> coord[Coordinator]
-  coord -->|ghi unified + delta + chiến lược| kb[(KB tầng unified)]
-  kb -->|đọc lịch sử| coord
-  coord -->|ReportingPayload| reporting[Reporting]
-  kb -->|đọc chiến lược quét| agents[Architecture Extraction / Code Analysis]
-```
+Mở file `.puml` trong VS Code với extension **PlantUML** (jebbs.plantuml) để xem trực tiếp, hoặc dán nội dung vào https://www.plantuml.com/plantuml. Thư viện C4 có sẵn trong PlantUML (`!include <C4/...>`), không cần tải thêm.

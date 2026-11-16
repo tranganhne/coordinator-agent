@@ -1,0 +1,37 @@
+{
+  "id": "S08_synthetic_large",
+  "title": "Dự án tổng hợp 8 module, 6 lần quét",
+  "description": "Sinh ngẫu nhiên có hạt giống 2026: khoảng 60-90 vi phạm thật mỗi lần quét, 10% được sửa và 5-12 lỗi mới mỗi lần, lần quét 4 là incremental (3 module).",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    },
+    {
+      "run": "s2",
+      "file": "scans/s2.json",
+      "scan_id": "s2"
+    },
+    {
+      "run": "s3",
+      "file": "scans/s3.json",
+      "scan_id": "s3"
+    },
+    {
+      "run": "s4",
+      "file": "scans/s4.json",
+      "scan_id": "s4"
+    },
+    {
+      "run": "s5",
+      "file": "scans/s5.json",
+      "scan_id": "s5"
+    },
+    {
+      "run": "s6",
+      "file": "scans/s6.json",
+      "scan_id": "s6"
+    }
+  ]
+}

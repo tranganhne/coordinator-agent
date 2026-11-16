@@ -1,0 +1,22 @@
+{
+  "id": "S02_lifecycle",
+  "title": "Vòng đời lỗi qua 3 lần quét",
+  "description": "A được sửa ở lần 2 rồi xuất hiện lại ở lần 3 (tính là New); B được sửa ở lần 3; D mới ở lần 2.",
+  "runs": [
+    {
+      "run": "s1",
+      "file": "scans/s1.json",
+      "scan_id": "s1"
+    },
+    {
+      "run": "s2",
+      "file": "scans/s2.json",
+      "scan_id": "s2"
+    },
+    {
+      "run": "s3",
+      "file": "scans/s3.json",
+      "scan_id": "s3"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+run,key,field,expected_resolution,expected_value,expected_conflict_resolved
+s1,R1|ui|db|src/ui/a.py,severity,merged,high,True
+s1,R2|api|db|src/api/b.py,severity,none,critical,True
